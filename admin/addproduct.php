@@ -10,7 +10,7 @@ if (isset($_COOKIE["user"])) {
     if (isset($_POST['them'])) {
       $ten = $_POST["ten"];
       $id_danhmuc = $_POST["danhmuc"];
-      $nhasanxuat = $_POST["nhacungcap"];
+      $nhacungcap = $_POST["nhacungcap"];
       $loaimoi = $_POST["loaimoi"];
       $nguyenlieu = $_POST["nguyenlieu"];
       $thuonghieu = $_POST["thuonghieu"];
@@ -34,7 +34,7 @@ if (isset($_COOKIE["user"])) {
       move_uploaded_file($tmp2, $dir . $anh2);
       move_uploaded_file($tmp3, $dir . $anh3);
 
-      selectAll("INSERT INTO sanpham VALUES(NULL,$id_danhmuc,'$ten','$nhacungcap','$loaimoi','$nguyenlieu','$thuonghieu',$baohanh,$xuatxu,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,1)");
+      selectAll("INSERT INTO sanpham (id_danhmuc,ten,nhasanxuat,id_nhacungcap,loaimoi,nguyenlieu,thuonghieu,baohanh,xuatxu,bonho,gia,anh1,anh2,anh3,chitiet,mota,luotxem,status) VALUES($id_danhmuc,'$ten','','$nhacungcap','$loaimoi','$nguyenlieu','$thuonghieu',$baohanh,$xuatxu,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,1)");
       header('location:product.php');
     }
 ?>
@@ -60,7 +60,7 @@ if (isset($_COOKIE["user"])) {
 
                   <div class="form-group">
                     <label for="exampleInputEmail3">Danh mục</label>
-                    <select required name="danhmuc" id="input" class="form-control text-light">
+                    <select required name="danhmuc" id="danhmuc" class="form-control text-light">
                       <?php
                       foreach (selectAll("SELECT * FROM danhmuc ") as $item) {
                       ?>
@@ -73,7 +73,7 @@ if (isset($_COOKIE["user"])) {
 
                   <div class="form-group">
                     <label for="exampleInputEmail3">Nhà cung cấp</label>
-                    <select required name="nhacungcap" id="input" class="form-control text-light">
+                    <select required name="nhacungcap" id="nhacungcap" class="form-control text-light">
                       <?php
                       foreach (selectAll("SELECT * FROM nhacungcap ") as $item) {
                       ?>

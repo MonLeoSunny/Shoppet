@@ -53,6 +53,9 @@ if (isset($_COOKIE["user"])) {
                                                     <td>
                                                         <a type="button" class="btn btn-primary btn-icon-text" href="edituserpermission.php?id=<?= $row['id_taikhoan'] ?>">
                                                             <i class="mdi mdi-file-check btn-icon-prepend"></i> Sửa </a>
+                                                        <a type="button" class="btn btn-danger btn-icon-text" style="width: 120px" href="deleteuserpermission.php?id=<?= $row['id_taikhoan'] ?>" onclick="return confirm('Bạn có muốn xóa sản phẩm này không?')">
+                                                            <i class="mdi mdi-delete btn-icon-prepend"></i> Xóa
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             <?php
