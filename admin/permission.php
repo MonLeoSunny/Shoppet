@@ -27,6 +27,7 @@ if (isset($_COOKIE["user"])) {
                                                 <th class="addfont" style="width: 20px">ID</th>
                                                 <th class="addfont" style="width: 400px">Tên</th>
                                                 <th class="addfont">Ngày khởi tạo</th>
+                                                <th class="addfont">Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,6 +46,10 @@ if (isset($_COOKIE["user"])) {
                                                     <td><?= $row['id'] ?></td>
                                                     <td><?= $row['ten'] ?></td>
                                                     <td><?= $row['created_at'] ?></td>
+                                                    <td>
+                                                        <a type="button" class="btn btn-primary btn-icon-text" href="editpermission.php?id=<?= $row['id'] ?>">
+                                                            <i class="mdi mdi-file-check btn-icon-prepend"></i> Sửa </a>
+                                                    </td>
                                                 </tr>
                                             <?php
                                             }

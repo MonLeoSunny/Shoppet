@@ -59,7 +59,7 @@ if (isset($_COOKIE["user"])) {
                                 <form method="POST">
                                     <div class="form-group">
                                         <label for="permission_name">Tên Quyền</label>
-                                        <input type="text" class="form-control" id="permission_name" name="permission_name" required>
+                                        <input type="text" class="form-control text-light" id="permission_name" name="permission_name" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Thêm Quyền</button>
                                 </form>

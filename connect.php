@@ -1,7 +1,7 @@
 <?php
 ob_start();
 try {
-    $conn = new PDO("mysql:host=localhost;dbname=thucung;charset=utf8", "root", "");
+    $conn = new PDO("mysql:host=localhost;dbname=shoppet;charset=utf8", "root", "");
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
@@ -15,7 +15,8 @@ function exSQL($sql)
     $result =  $GLOBALS['conn']->prepare($sql);
     return $result->execute();
 }
-function rowCount($sql){
+function rowCount($sql)
+{
     $result =  $GLOBALS['conn']->query($sql);
     return $result->rowCount();
 }
@@ -23,4 +24,3 @@ function rowCount($sql){
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $timestamp = time();
 $today = date('d-m-Y H:i:s', $timestamp);
-?>

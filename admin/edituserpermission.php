@@ -31,7 +31,7 @@ if (isset($_COOKIE["user"])) {
 
                 // Handle form submission to update user permissions
                 if (isset($_POST['update'])) {
-                    $userId = $_POST['id']; // Get the user ID from the form
+                    $userId = $userData['id']; // Get the user ID from the form
                     $selectedPermissions = $_POST['permissions']; // Get the selected permissions from the checkboxes
 
                     // Delete existing user permissions

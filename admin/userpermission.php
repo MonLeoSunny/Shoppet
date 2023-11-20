@@ -37,8 +37,8 @@ if (isset($_COOKIE["user"])) {
 
                                             $baseQuery = "SELECT taikhoan.id AS id_taikhoan, taikhoan.taikhoan, GROUP_CONCAT(quyen.ten ORDER BY quyen.id SEPARATOR ', ') AS quyen_names
                                         FROM taikhoan
-                                        LEFT JOIN taikhoan_quyen ON taikhoan.id = taikhoan_quyen.id_taikhoan
-                                        LEFT JOIN quyen ON taikhoan_quyen.id_quyen = quyen.id
+                                        inner JOIN taikhoan_quyen ON taikhoan.id = taikhoan_quyen.id_taikhoan
+                                        inner JOIN quyen ON taikhoan_quyen.id_quyen = quyen.id
                                         where taikhoan.phanquyen = 1
                                         GROUP BY taikhoan.id, taikhoan.taikhoan";
                                             $numrow = rowCount($baseQuery);
