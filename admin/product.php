@@ -63,12 +63,12 @@ if (isset($_COOKIE["user"])) {
                 <form method="get" action="" id="filter-form">
                   <div class="form-group">
                     <label for="searchBox">Tìm kiếm theo tên sản phẩm:</label>
-                    <input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Nhập tên sản phẩm">
+                    <input type="text" class="form-control text-light" id="searchBox" name="searchBox" placeholder="Nhập tên sản phẩm">
                   </div>
 
                   <div class="form-group">
                     <label for="categorySelect">Chọn Danh Mục:</label>
-                    <select class="form-control" id="categorySelect" name="category" onchange="onCategoryChange()">
+                    <select class="form-control text-light" id="categorySelect" name="category" onchange="onCategoryChange()">
                       <option value="">Tất Cả</option> <!-- Option to show all products -->
                       <?php
                       // Fetch and display category options from the database

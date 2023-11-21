@@ -29,12 +29,13 @@ if (isset($_COOKIE["user"])) {
       $type3 = $_FILES['anh3']['type'];
       $chitiet = $_POST["chitiet"];
       $mota = $_POST["mota"];
+      $status = $_POST["status"];
       $dir = '../img/product/';
       move_uploaded_file($tmp1, $dir . $anh1);
       move_uploaded_file($tmp2, $dir . $anh2);
       move_uploaded_file($tmp3, $dir . $anh3);
 
-      selectAll("INSERT INTO sanpham (id_danhmuc,ten,nhasanxuat,id_nhacungcap,loaimoi,nguyenlieu,thuonghieu,baohanh,xuatxu,bonho,gia,anh1,anh2,anh3,chitiet,mota,luotxem,status) VALUES($id_danhmuc,'$ten','','$nhacungcap','$loaimoi','$nguyenlieu','$thuonghieu',$baohanh,$xuatxu,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,1)");
+      selectAll("INSERT INTO sanpham (id_danhmuc,ten,nhasanxuat,id_nhacungcap,loaimoi,nguyenlieu,thuonghieu,baohanh,xuatxu,bonho,gia,anh1,anh2,anh3,chitiet,mota,luotxem,status) VALUES($id_danhmuc,'$ten','','$nhacungcap','$loaimoi','$nguyenlieu','$thuonghieu',$baohanh,$xuatxu,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,$status)");
       header('location:product.php');
     }
 ?>
@@ -131,6 +132,14 @@ if (isset($_COOKIE["user"])) {
                   <div class="form-group">
                     <label for="exampleTextarea1">Chi Tiết</label>
                     <textarea type="text" name="chitiet" required class="form-control text-light" style="line-height: 2" rows="6" placeholder="Nhập chi tiết"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="status">Trạng thái bán</label>
+                    <select required name="status" id="status" class="form-control text-light">
+                      <option value=0>Đang bán</option>
+                      <option value=1>Không bán</option>
+                    </select>
                   </div>
 
                   <button type="submit" name="them" class="btn btn-primary mr-2">Thêm sản phẩm</button>

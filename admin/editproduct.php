@@ -8,7 +8,7 @@ if (isset($_COOKIE["user"])) {
   }
   if ($permission == 1 || $permission == 0) {
     if (isset($_GET["id"])) {
-      foreach (selectAll("SELECT * FROM sanpham WHERE id={$_GET['id']}") as $item) {
+      foreach (selectAll("SELECT * FROM sanpham  WHERE sanpham.id={$_GET['id']}") as $item) {
         $ten = $item['ten'];
         $id_danhmuc = $item['id_danhmuc'];
         $nhacungcap = $item['id_nhacungcap'];
@@ -45,15 +45,16 @@ if (isset($_COOKIE["user"])) {
       $type3 = $_FILES['anh3']['type'];
       $chitiet = $_POST["chitiet"];
       $mota = $_POST["mota"];
+      $status = $_POST["status"];
       $dir = '../img/product/';
       move_uploaded_file($tmp1, $dir . $anh1);
       move_uploaded_file($tmp2, $dir . $anh2);
       move_uploaded_file($tmp3, $dir . $anh3);
       if (empty($_FILES['anh1']['name'] || $_FILES['anh2']['name'] || $_FILES['anh3']['name'])) {
-        selectAll("UPDATE sanpham SET ten='$ten',id_danhmuc='$id_danhmuc',id_nhacungcap='$nhacungcap',loaimoi='$loaimoi',nguyenlieu='$nguyenlieu',thuonghieu='$thuonghieu',baohanh='$baohanh',xuatxu='$xuatxu',bonho='$bonho',gia='$gia',chitiet='$chitiet',mota='$mota' WHERE id={$_GET['id']}");
+        selectAll("UPDATE sanpham SET ten='$ten',id_danhmuc='$id_danhmuc',id_nhacungcap='$nhacungcap',loaimoi='$loaimoi',nguyenlieu='$nguyenlieu',thuonghieu='$thuonghieu',baohanh='$baohanh',xuatxu='$xuatxu',bonho='$bonho',gia='$gia',chitiet='$chitiet',mota='$mota',status='$status' WHERE id={$_GET['id']}");
         header('location:product.php');
       } else {
-        selectAll("UPDATE sanpham SET ten='$ten',id_danhmuc='$id_danhmuc',id_nhacungcap='$nhacungcap',loaimoi='$loaimoi',nguyenlieu='$nguyenlieu',thuonghieu='$thuonghieu',baohanh='$baohanh',xuatxu='$xuatxu',bonho='$bonho',gia='$gia',anh1='$anh1',anh2='$anh2',anh3='$anh3',chitiet='$chitiet',mota='$mota' WHERE id={$_GET['id']}");
+        selectAll("UPDATE sanpham SET ten='$ten',id_danhmuc='$id_danhmuc',id_nhacungcap='$nhacungcap',loaimoi='$loaimoi',nguyenlieu='$nguyenlieu',thuonghieu='$thuonghieu',baohanh='$baohanh',xuatxu='$xuatxu',bonho='$bonho',gia='$gia',anh1='$anh1',anh2='$anh2',anh3='$anh3',chitiet='$chitiet',mota='$mota',status='$status' WHERE id={$_GET['id']}");
         header('location:product.php');
       }
     }
@@ -79,12 +80,15 @@ if (isset($_COOKIE["user"])) {
                   </div>
 
                   <div class="form-group addfont">
-                    <label for="exampleInputEmail3">Danh mục</label>
-                    <select required name="danhmuc" id="input" class="form-control text-light">
+                    <label for="danhmuc">Danh mục</label>
+                    <select required name="danhmuc" id="danhmuc" class="form-control text-light">
                       <?php
-                      foreach (selectAll("SELECT * FROM danhmuc ") as $item) {
+                      foreach (selectAll("SELECT * FROM danhmuc") as $item) {
+                        $categoryId = $item['id_dm'];
+                        $categoryName = $item['danhmuc'];
+                        $selected = ($id_danhmuc == $categoryId) ? 'selected' : '';
                       ?>
-                        <option value="<?= $item['id_dm'] ?>"><?= $item['danhmuc'] ?></option>
+                        <option value="<?= $categoryId ?>" <?= $selected ?>><?= $categoryName ?></option>
                       <?php
                       }
                       ?>
@@ -92,12 +96,15 @@ if (isset($_COOKIE["user"])) {
                   </div>
 
                   <div class="form-group addfont">
-                    <label for="exampleInputEmail3">Nhà cung cấp</label>
-                    <select required name="nhacungcap" id="input" class="form-control text-light">
+                    <label for="nhacungcap">Nhà cung cấp</label>
+                    <select required name="nhacungcap" id="nhacungcap" class="form-control text-light">
                       <?php
                       foreach (selectAll("SELECT * FROM nhacungcap ") as $item) {
+                        $supId = $item["id"];
+                        $subName = $item["ten"];
+                        $selected = ($nhacungcap == $supId) ? 'selected' : '';
                       ?>
-                        <option value="<?= $item['id'] ?>"><?= $item['ten'] ?></option>
+                        <option value="<?= $supId ?>" <?= $selected ?>><?= $subName ?></option>
                       <?php
                       }
                       ?>
@@ -151,6 +158,14 @@ if (isset($_COOKIE["user"])) {
                   <div class="form-group addfont">
                     <label for="exampleTextarea1">Chi Tiết</label>
                     <textarea type="text" name="chitiet" required class="form-control text-light" style="line-height: 2" rows="6" placeholder="Nhập chi tiết"><?= $chitiet ?></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="status">Trạng thái bán</label>
+                    <select required name="status" id="status" class="form-control text-light">
+                      <option value=0>Đang bán</option>
+                      <option value=1>Không bán</option>
+                    </select>
                   </div>
 
                   <button type="submit" name="sua" class="btn btn-primary mr-2">Sửa sản phẩm</button>
