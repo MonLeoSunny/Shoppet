@@ -47,15 +47,15 @@ if (isset($_COOKIE["user"])) {
                                 <form method="post" action="" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="title">Tiêu Đề:</label>
-                                        <input type="text" class="form-control" id="title" name="title" required>
+                                        <input type="text" class="form-control text-light" id="title" name="title" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Mô Tả:</label>
-                                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                        <textarea class="form-control text-light " id="description" name="description" rows="3" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="content">Nội Dung:</label>
-                                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                                        <textarea class="form-control text-light" id="content" name="content" rows="5" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="image">Ảnh:</label>

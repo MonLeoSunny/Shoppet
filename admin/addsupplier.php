@@ -23,11 +23,11 @@ if (isset($_COOKIE["user"])) {
 
                 if (strlen($dienthoai) > 10) {
                     $errorMessage = "Số điện thoại không quá 10 chữ số";
-                } 
+                }
 
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $errorMessage = "Email không hợp lệ";
-                } 
+                }
 
                 // Validate and sanitize the input data (you should add more validation)
                 // Example validation: Check if the permission name is not empty
@@ -37,8 +37,8 @@ if (isset($_COOKIE["user"])) {
                     // Insert the new permission into the 'quyen' table
                     // You should replace 'YOUR_INSERT_QUERY' with the actual SQL query
                     // Make sure to properly sanitize and validate the input
-    
-    
+
+
                     if (rowCount("SELECT * FROM nhacungcap WHERE ten='$newPermissionName'") > 0) {
                         $errorMessage =  "Nhà cung cấp đã tồn tại!";
                     } else {
@@ -51,11 +51,11 @@ if (isset($_COOKIE["user"])) {
                             $errorMessage = "Thêm nhà cung cấp không thành công. Vui lòng thử lại.";
                         }
                     }
-    
+
                     // Execute the query (you should use prepared statements for security)
                     // Example: mysqli_query($conn, $insertQuery);
-    
-    
+
+
                 }
             }
         }
@@ -72,19 +72,19 @@ if (isset($_COOKIE["user"])) {
                                 <form method="POST">
                                     <div class="form-group">
                                         <label for="ten">Tên nhà cung cấp</label>
-                                        <input type="text" class="form-control" id="ten" name="ten" required>
+                                        <input type="text" class="form-control text-light" id="ten" name="ten" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="dienthoai">Số điện thoai</label>
-                                        <input type="text" class="form-control" id="dienthoai" name="dienthoai" required>
+                                        <input type="text" class="form-control text-light" id="dienthoai" name="dienthoai" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" class="form-control" id="email" name="email" required>
+                                        <input type="text" class="form-control text-light" id="email" name="email" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="diachi">Địa chỉ</label>
-                                        <input type="text" class="form-control" id="diachi" name="diachi" required>
+                                        <input type="text" class="form-control text-light" id="diachi" name="diachi" required>
                                     </div>
                                     <button type="submit" name="them" class="btn btn-primary">Thêm nhà cung cấp</button>
                                     <a class="btn btn-dark" href="suppliers.php">Hủy</a>

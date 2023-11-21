@@ -13,13 +13,14 @@ if (isset($_GET["id"])) {
         $baohanh = $row['baohanh'];
         $xuatxu = $row['xuatxu'];
         $bonho = $row['bonho'];
+        $soluong = $row['soluong'];
         $anh1 = $row['anh1'];
         $anh2 = $row['anh2'];
         $anh3 = $row['anh3'];
         $luotxem = $row['luotxem'];
         $cateid = $row['id_danhmuc'];
         $chitiet = $row['chitiet'];
-        $mota =$row['mota'];
+        $mota = $row['mota'];
         foreach (selectAll("SELECT * FROM danhmuc WHERE id_dm={$row['id_danhmuc']}") as $item) {
             $danhmuc = $item['danhmuc'];
         }
@@ -53,99 +54,106 @@ if (isset($_GET["id"])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <style>
-.header_bg {
-    background-color: #ecfdff;
-    height: 230px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.padding_top1{
-    padding-top:20px;
-}
-.a1{
-    padding-top:130px;
-}
+    .header_bg {
+        background-color: #ecfdff;
+        height: 230px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-.a2{
-    height: 230px;
+    .padding_top1 {
+        padding-top: 20px;
+    }
 
-}
-.form-rep{
-    display: none;
-}
-.showformrepcmt:checked + .form-rep{
-    display: block;
-}    
+    .a1 {
+        padding-top: 130px;
+    }
+
+    .a2 {
+        height: 230px;
+
+    }
+
+    .form-rep {
+        display: none;
+    }
+
+    .showformrepcmt:checked+.form-rep {
+        display: block;
+    }
 </style>
 
 <body>
 
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
-  <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
-  <section class="breadcrumb header_bg">
+    <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumb header_bg">
         <div class="container">
             <div class="row justify-content-center a2">
                 <div class="col-lg-8 a2">
-                        <div class="a1">
-                            <h2 class="addfont">Chi Tiết Sản Phẩm</h2>
-                        </div>
+                    <div class="a1">
+                        <h2 class="addfont">Chi Tiết Sản Phẩm</h2>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-  <!-- breadcrumb end-->
+    <!-- breadcrumb end-->
     <!--================End Home Banner Area =================-->
 
     <!--================Single Product Area =================-->
     <div class="product_image_area " style="padding-top: 100px">
         <div class="container">
             <div class="row s_product_inner justify-content-between">
-                <?php 
-                    foreach (selectAll("SELECT * FROM sanpham WHERE id=$idSanpham") as $item) {
-                        $giatien = $item['gia'];
-                        ?>
-                            <div class="col-lg-7 col-xl-7">
-                                <div class="product_slider_img">
-                                    <div id="vertical">
-                                        <div data-thumb="img/product/<?= $item['anh1'] ?>">
-                                            <img src="img/product/<?= $item['anh1'] ?>"/>
-                                        </div>
-                                        <div data-thumb="img/product/<?= $item['anh2'] ?>">
-                                            <img src="img/product/<?= $item['anh2'] ?>"/>
-                                        </div>
-                                        <div data-thumb="img/product/<?= $item['anh3'] ?>" >
-                                            <img src="img/product/<?= $item['anh3'] ?>"/>
-                                        </div>
-                                    </div>
+                <?php
+                foreach (selectAll("SELECT * FROM sanpham WHERE id=$idSanpham") as $item) {
+                    $giatien = $item['gia'];
+                ?>
+                    <div class="col-lg-7 col-xl-7">
+                        <div class="product_slider_img">
+                            <div id="vertical">
+                                <div data-thumb="img/product/<?= $item['anh1'] ?>">
+                                    <img src="img/product/<?= $item['anh1'] ?>" />
+                                </div>
+                                <div data-thumb="img/product/<?= $item['anh2'] ?>">
+                                    <img src="img/product/<?= $item['anh2'] ?>" />
+                                </div>
+                                <div data-thumb="img/product/<?= $item['anh3'] ?>">
+                                    <img src="img/product/<?= $item['anh3'] ?>" />
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-xl-4">
-                                <div class="s_product_text">
-                                    <h3><?= $item['ten'] ?></h3>
-                                    <h2 > <?= number_format($item['gia']) . 'đ' ?></h2>
-                                    <ul class="list">
-                                        <li>
-                                            <a class="active" href="category.php?id=<?= $item['id_danhmuc'] ?>">
-                                                <span>Danh mục</span> : <?= $danhmuc ?></a>
-                                        </li>
-                                        
-                                    </ul>
-                                    <p>
-                                        <?= $mota ?>
-                                    </p>
-                                    <form class="card_area d-flex justify-content-between align-items-center" action="" method="POST">
-                                        <div class="product_count">
-                                            <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                                            <input type="number" hidden name="giatien" value="<?= $giatien ?>">
-                                            <input class="input-number" name="soluong" type="number" value="1" min="1" max="100" readonly>
-                                            <span class="number-increment"> <i class="ti-plus"></i></span>
-                                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-xl-4">
+                        <div class="s_product_text">
+                            <h3><?= $item['ten'] ?></h3>
+                            <h2> <?= number_format($item['gia']) . 'đ' ?></h2>
+                            <ul class="list">
+                                <li>
+                                    <a class="active" href="category.php?id=<?= $item['id_danhmuc'] ?>">
+                                        <span>Danh mục</span> : <?= $danhmuc ?></a>
+                                </li>
+                                <li>
+
+                                    <span>Số lượng</span> : <?= $soluong ?>
+                                </li>
+                            </ul>
+                            <p>
+                                <?= $mota ?>
+                            </p>
+                            <form class="card_area d-flex justify-content-between align-items-center" action="" method="POST">
+                                <div class="product_count">
+                                    <!-- <span class="inumber-decrement"> <i class="ti-minus"></i></span> -->
+                                    <input type="number" hidden name="giatien" value="<?= $giatien ?>">
+                                    <input onchange="checkSoluong(<?php echo $soluong; ?>)" class="input-number" id='soluongsanpham' name="soluong" type="number" value="1" min="1" max="100">
+                                    <!-- <span class="number-increment"> <i class="ti-plus"></i></span> -->
+                                </div>
 
 
-                                        <!-- if((rowCount đơn hàng where status =0) =0){
+                                <!-- if((rowCount đơn hàng where status =0) =0){
                                                 insert dơn hàng ;
                                                 insert ctđơn hàng (fk là id đơn hàng mới tạo, và thông tin sản phẩm vừa thêm);
                                             }
@@ -160,44 +168,44 @@ if (isset($_GET["id"])) {
                                             } -->
 
 
-                                        <?php 
-                                            if (isset($_POST["addcart"])) {
-                                                if (isset($_COOKIE["user"])) {
-                                                    $taikhoan = $_COOKIE["user"];
-                                                    $soluong = $_POST["soluong"];
-                                                    $giatien = $_POST["giatien"];
-                                                    foreach (selectAll("SELECT * FROM `taikhoan` WHERE taikhoan='$taikhoan'") as $item) {
-                                                        $id_nguoidung = $item['id'];
-                                                    }
-                                                    if (rowCount("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung")>0) {
-                                                        foreach (selectAll("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung") as $item) {
-                                                            $idDhcu= $item['id'];
-                                                        }
-                                                        if (rowCount("SELECT * FROM ctdonhang WHERE id_donhang = $idDhcu && id_sanpham = $idSanpham")>0) {
-                                                            selectAll("UPDATE ctdonhang SET soluong= $soluong+soluong WHERE id_donhang = $idDhcu && id_sanpham = $idSanpham");
-                                                        }else{
-                                                            selectAll("INSERT INTO ctdonhang VALUES(null,$idDhcu,$idSanpham,$soluong,$giatien)");
-                                                        }
-                                                    }else{
-                                                        selectAll("INSERT INTO donhang VALUES(null,$id_nguoidung,0,0,null,null)");
-                                                        foreach (selectAll("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung") as $item) {
-                                                            $idDhmoi= $item['id'];
-                                                        }
-                                                        selectAll("INSERT INTO ctdonhang VALUES(null,$idDhmoi,$idSanpham,$soluong,$giatien)");
-                                                    }
-                                                    
-                                                    echo "<meta http-equiv='refresh' content='0'>";
-                                                }else{
-                                                    echo "<script>alert('Vui lòng đăng nhập để mua hàng')</script>";
-                                                }
+                                <?php
+                                if (isset($_POST["addcart"])) {
+                                    if (isset($_COOKIE["user"])) {
+                                        $taikhoan = $_COOKIE["user"];
+                                        $soluong = $_POST["soluong"];
+                                        $giatien = $_POST["giatien"];
+                                        foreach (selectAll("SELECT * FROM `taikhoan` WHERE taikhoan='$taikhoan'") as $item) {
+                                            $id_nguoidung = $item['id'];
+                                        }
+                                        if (rowCount("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung") > 0) {
+                                            foreach (selectAll("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung") as $item) {
+                                                $idDhcu = $item['id'];
                                             }
-                                        ?>
-                                        <input class="btn_3" name="addcart" type="submit" value="Thêm vào giỏ hàng"/>
-                                    </form>
-                                </div>
-                            </div>
-                        <?php
-                    }
+                                            if (rowCount("SELECT * FROM ctdonhang WHERE id_donhang = $idDhcu && id_sanpham = $idSanpham") > 0) {
+                                                selectAll("UPDATE ctdonhang SET soluong= $soluong+soluong WHERE id_donhang = $idDhcu && id_sanpham = $idSanpham");
+                                            } else {
+                                                selectAll("INSERT INTO ctdonhang VALUES(null,$idDhcu,$idSanpham,$soluong,$giatien)");
+                                            }
+                                        } else {
+                                            selectAll("INSERT INTO donhang VALUES(null,$id_nguoidung,0,0,null,null)");
+                                            foreach (selectAll("SELECT * FROM donhang WHERE status=0 && id_taikhoan=$id_nguoidung") as $item) {
+                                                $idDhmoi = $item['id'];
+                                            }
+                                            selectAll("INSERT INTO ctdonhang VALUES(null,$idDhmoi,$idSanpham,$soluong,$giatien)");
+                                        }
+
+                                        echo "<meta http-equiv='refresh' content='0'>";
+                                    } else {
+                                        echo "<script>alert('Vui lòng đăng nhập để mua hàng')</script>";
+                                    }
+                                }
+                                ?>
+                                <input class="btn_3" name="addcart" type="submit" value="Thêm vào giỏ hàng" />
+                            </form>
+                        </div>
+                    </div>
+                <?php
+                }
                 ?>
             </div>
         </div>
@@ -215,7 +223,7 @@ if (isset($_GET["id"])) {
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Chi tiết sản phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="true" selected = true>Bình luận</a>
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="true" selected=true>Bình luận</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -265,7 +273,7 @@ if (isset($_GET["id"])) {
                                         <h5>Thông tin khác</h5>
                                     </td>
                                     <td>
-                                        <h5><?= $bonho?></h5>
+                                        <h5><?= $bonho ?></h5>
                                     </td>
                                 </tr>
                                 <tr>
@@ -292,65 +300,65 @@ if (isset($_GET["id"])) {
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="comment_list">
-                                <?php 
-                                    if (isset($_POST["repcomment"])) {
-                                        $noidungtraloi = $_POST["noidungtraloi"];
-                                        $idbinhluan = $_POST["idbinhluan"];
-                                        selectAll("INSERT INTO `tlbinhluan`(`id`, `id_binhluan`, `noidung`) VALUES (NULL,$idbinhluan,'$noidungtraloi')");
-                                        echo "<meta http-equiv='refresh' content='0'>";
-                                    }
+                                <?php
+                                if (isset($_POST["repcomment"])) {
+                                    $noidungtraloi = $_POST["noidungtraloi"];
+                                    $idbinhluan = $_POST["idbinhluan"];
+                                    selectAll("INSERT INTO `tlbinhluan`(`id`, `id_binhluan`, `noidung`) VALUES (NULL,$idbinhluan,'$noidungtraloi')");
+                                    echo "<meta http-equiv='refresh' content='0'>";
+                                }
                                 ?>
-                                <?php 
-                                    foreach (selectAll("SELECT * FROM binhluan WHERE id_sanpham=$idSanpham") as $row) {
+                                <?php
+                                foreach (selectAll("SELECT * FROM binhluan WHERE id_sanpham=$idSanpham") as $row) {
                                 ?>
-                                    <?php 
-                                        foreach (selectAll("SELECT * FROM taikhoan WHERE id={$row['id_taikhoan']}") as $item) {
+                                    <?php
+                                    foreach (selectAll("SELECT * FROM taikhoan WHERE id={$row['id_taikhoan']}") as $item) {
                                     ?>
                                         <div class="review_item addfont">
                                             <div class="media">
                                                 <div class="d-flex">
-                                                    <img src="img/account/<?= empty($item['anh'])?'user.png':$item['anh'] ?>" alt="" width="60" height="60">  
+                                                    <img src="img/account/<?= empty($item['anh']) ? 'user.png' : $item['anh'] ?>" alt="" width="60" height="60">
                                                 </div>
                                                 <div class="media-body ">
-                                                    <h4 ><?= $item['hoten'] ?></h4>
+                                                    <h4><?= $item['hoten'] ?></h4>
                                                     <h5></h5>
                                                     <!-- <a class="reply_btn">Reply</a> -->
                                                 </div>
                                             </div>
                                             <p>
-                                            <?= $row['noidung'] ?>
+                                                <?= $row['noidung'] ?>
                                             </p>
-                                            <?php 
-                                                if (isset($_COOKIE["user"])) {
-                                                $user= $_COOKIE["user"];
+                                            <?php
+                                            if (isset($_COOKIE["user"])) {
+                                                $user = $_COOKIE["user"];
                                                 foreach (selectAll("SELECT * FROM taikhoan WHERE taikhoan='$user'") as $rows) {
                                                     $permission = $rows['phanquyen'];
                                                 }
-                                                    if ( $permission==1 || $permission==0) {
-                                                        ?>
-                                                        <label for="showcomment<?= $row['id'] ?>" class="btn_4">
-                                                            Trả lời
-                                                        </label>
-                                                        <div class="review_item reply">
-
-                                                            <input type="checkbox" class="showformrepcmt" name="" id="showcomment<?= $row['id'] ?>" hidden>
-                                                            <form action="" method="POST" class="form-rep">
-                                                                <input type="text" name="idbinhluan" value="<?= $row['id'] ?>" hidden>
-                                                                <textarea class="form-control" name="noidungtraloi" style="width:100%;height:100px;resize:none" id="" cols="30" rows="10" placeholder="Nhập nội dung trả lời"></textarea>
-                                                                <button type="submit" name="repcomment" class="genric-btn primary-border small" style="float: right; margin-top:5px">Trả lời</button>
-                                                            </form>
-                                                        </div>
-                                                    <?php
-                                                    }
-                                                }
-                                                ?>
-                                        </div>
-                                        <?php 
-                                        foreach (selectAll("SELECT * FROM tlbinhluan WHERE id_binhluan={$row['id']}") as $repcmt) {
+                                                if ($permission == 1 || $permission == 0) {
                                             ?>
+                                                    <label for="showcomment<?= $row['id'] ?>" class="btn_4">
+                                                        Trả lời
+                                                    </label>
+                                                    <div class="review_item reply">
+
+                                                        <input type="checkbox" class="showformrepcmt" name="" id="showcomment<?= $row['id'] ?>" hidden>
+                                                        <form action="" method="POST" class="form-rep">
+                                                            <input type="text" name="idbinhluan" value="<?= $row['id'] ?>" hidden>
+                                                            <textarea class="form-control" name="noidungtraloi" style="width:100%;height:100px;resize:none" id="" cols="30" rows="10" placeholder="Nhập nội dung trả lời"></textarea>
+                                                            <button type="submit" name="repcomment" class="genric-btn primary-border small" style="float: right; margin-top:5px">Trả lời</button>
+                                                        </form>
+                                                    </div>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
+                                        <?php
+                                        foreach (selectAll("SELECT * FROM tlbinhluan WHERE id_binhluan={$row['id']}") as $repcmt) {
+                                        ?>
                                             <div class="review_item reply d-flex">
                                                 <div>
-                                                    <img src="img/account/logos.png" alt="" >
+                                                    <img src="img/account/logos.png" alt="">
                                                 </div>
                                                 <div class="ml-2">
                                                     <p class="font-weight-bold text-danger">Admin</p>
@@ -361,37 +369,38 @@ if (isset($_GET["id"])) {
                                         }
                                         ?>
 
-                                        <hr></hr>
+                                        <hr>
+                                        </hr>
 
-                                    <?php
+                                <?php
                                     }
                                 }
-                            ?>
+                                ?>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-6">
                             <div class="review_box">
                                 <h4>Bình luận sản phẩm</h4>
-                                <?php 
-                                    if (isset($_POST["comment"])) {
-                                        if (isset($_COOKIE["user"])) {
-                                            $noidung = $_POST["noidung"];
-                                            $taikhoan = $_COOKIE["user"];
-                                            foreach (selectAll("SELECT * FROM `taikhoan` WHERE taikhoan='$taikhoan'") as $item) {
-                                                $id_nguoidung = $item['id'];
-                                            }
-                                            selectAll("INSERT INTO `binhluan` VALUES (NULL, $id_nguoidung, $idSanpham,'$noidung')");
-                                            echo "<meta http-equiv='refresh' content='0'>";
-                                        }else{
-                                            echo "<script>alert('Vui lòng đăng nhập để bình luận')</script>";
+                                <?php
+                                if (isset($_POST["comment"])) {
+                                    if (isset($_COOKIE["user"])) {
+                                        $noidung = $_POST["noidung"];
+                                        $taikhoan = $_COOKIE["user"];
+                                        foreach (selectAll("SELECT * FROM `taikhoan` WHERE taikhoan='$taikhoan'") as $item) {
+                                            $id_nguoidung = $item['id'];
                                         }
+                                        selectAll("INSERT INTO `binhluan` VALUES (NULL, $id_nguoidung, $idSanpham,'$noidung')");
+                                        echo "<meta http-equiv='refresh' content='0'>";
+                                    } else {
+                                        echo "<script>alert('Vui lòng đăng nhập để bình luận')</script>";
                                     }
+                                }
                                 ?>
                                 <form class="row contact_form" action="" method="post" novalidate="novalidate">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" name="noidung" style="width:100%;height:100px;resize:none" id=""  placeholder="Nhập nội dung bình luận"></textarea>
+                                            <textarea class="form-control" name="noidung" style="width:100%;height:100px;resize:none" id="" placeholder="Nhập nội dung bình luận"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-right">
@@ -420,23 +429,23 @@ if (isset($_GET["id"])) {
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-12">
                     <div class="best_product_slider owl-carousel">
-                    <?php 
+                        <?php
                         foreach (selectAll("SELECT * FROM sanpham WHERE id_danhmuc = $cateid AND NOT(id = $idSanpham) ") as $item) {
-                    ?>
-                        <div class="single_product_item">
-                            <a href="detail.php?id=<?= $item['id'] ?>" >
-                                <img src="img/product/<?= $item['anh1'] ?>" alt="">
-                            </a>
-                            <div class="single_product_text">
-                                <a href="detail.php?id=<?= $item['id'] ?>" >
-                                <h4><?= $item['ten'] ?></h4>
-                                <h3><?= number_format($item['gia']) . 'đ' ?></h3>
+                        ?>
+                            <div class="single_product_item">
+                                <a href="detail.php?id=<?= $item['id'] ?>">
+                                    <img src="img/product/<?= $item['anh1'] ?>" alt="">
                                 </a>
+                                <div class="single_product_text">
+                                    <a href="detail.php?id=<?= $item['id'] ?>">
+                                        <h4><?= $item['ten'] ?></h4>
+                                        <h3><?= number_format($item['gia']) . 'đ' ?></h3>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    <?php
-                    }
-                    ?>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -444,7 +453,21 @@ if (isset($_GET["id"])) {
     </section>
     <!-- product_list part end-->
 
-    <?php include 'footer.php';?>
+    <?php include 'footer.php'; ?>
+
+    <script>
+        function checkSoluong(maxSoluong) {
+            var soluongInput = document.getElementById('soluongsanpham');
+            var soluongValue = parseInt(soluongInput.value);
+            var maxSoluongValue = parseInt(maxSoluong, 10);
+
+            if (soluongValue > maxSoluongValue) {
+                alert("Số lượng sản phẩm không được lớn hơn " + maxSoluongValue);
+                // You can also reset the value to 4 if you want
+                soluongInput.value = maxSoluongValue;
+            }
+        }
+    </script>
 
 
     <!-- jquery plugins here-->
@@ -480,4 +503,3 @@ if (isset($_GET["id"])) {
 </body>
 
 </html>
-

@@ -142,18 +142,34 @@ if (isset($_COOKIE["user"])) {
             ?>
 
             <?php
+            // Check if phanquyen is equal to 1, and if so, display the additional dropdown
+            if ($permission == 0) {
+            ?>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="employee.php">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-account-card-details"></i>
+                  </span>
+                  <span class="menu-title addfont">Nhân viên</span>
+                </a>
+              </li>
+            <?php
+            }
+            ?>
+
+            <?php
             $checkPermissionQuery = "SELECT * FROM taikhoan_quyen WHERE id_taikhoan = $userId AND id_quyen = 7";
             $permissionResult = rowCount($checkPermissionQuery);
             if ($permissionResult > 0 || $permission == 0) {
             ?>
-            <li class="nav-item menu-items">
-              <a class="nav-link" href="comment.php">
-                <span class="menu-icon">
-                  <i class="mdi mdi-comment-processing-outline"></i>
-                </span>
-                <span class="menu-title addfont">Bình Luận</span>
-              </a>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="comment.php">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-comment-processing-outline"></i>
+                  </span>
+                  <span class="menu-title addfont">Bình Luận</span>
+                </a>
+              </li>
             <?php
             }
             ?>
@@ -164,14 +180,14 @@ if (isset($_COOKIE["user"])) {
             $permissionResult = rowCount($checkPermissionQuery);
             if ($permissionResult > 0 || $permission == 0) {
             ?>
-            <li class="nav-item menu-items">
-              <a class="nav-link" href="news.php">
-                <span class="menu-icon">
-                  <i class="mdi mdi-newspaper"></i>
-                </span>
-                <span class="menu-title addfont">Tin tức</span>
-              </a>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="news.php">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-newspaper"></i>
+                  </span>
+                  <span class="menu-title addfont">Tin tức</span>
+                </a>
+              </li>
             <?php
             }
             ?>
@@ -181,14 +197,14 @@ if (isset($_COOKIE["user"])) {
             $permissionResult = rowCount($checkPermissionQuery);
             if ($permissionResult > 0 || $permission == 0) {
             ?>
-            <li class="nav-item menu-items">
-              <a class="nav-link" href="cart.php?action">
-                <span class="menu-icon">
-                  <i class="mdi mdi-cart"></i>
-                </span>
-                <span class="menu-title addfont">Đơn Hàng</span>
-              </a>
-            </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" href="cart.php?action">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-cart"></i>
+                  </span>
+                  <span class="menu-title addfont">Đơn Hàng</span>
+                </a>
+              </li>
             <?php
             }
             ?>
