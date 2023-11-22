@@ -37,7 +37,7 @@ if (isset($_COOKIE["user"])) {
                                                 <th class="addfont" style="width: 300px">Số điện thoại</th>
                                                 <th class="addfont" style="width: 300px">Địa chỉ</th>
                                                 <th class="addfont" style="width: 300px">Trạng thái</th>
-                                                <th class="addfont"><a type="button" class="btn btn-success btn-fw" style="width: 204px" href="addaccount.php">Thêm Tài Khoản</a></th>
+                                                <th class="addfont"><a type="button" class="btn btn-success btn-fw" style="width: 204px" href="addaccount.php">Thêm Nhân viên</a></th>
                                             </tr>
                                         </thead>
                                         <tbody>

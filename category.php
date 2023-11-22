@@ -136,8 +136,8 @@ $sortedProducts = selectAll($query);
                                 <select id="sort-select" onchange="changeSort()">
                                     <option value="az" <?= ($sort == 'az') ? 'selected' : '' ?>>A-Z</option>
                                     <option value="za" <?= ($sort == 'za') ? 'selected' : '' ?>>Z-A</option>
-                                    <option value="price-low-high" <?= ($sort == 'price-low-high') ? 'selected' : '' ?>>Price Low-High</option>
-                                    <option value="price-high-low" <?= ($sort == 'price-high-low') ? 'selected' : '' ?>>Price High-Low</option>
+                                    <option value="price-low-high" <?= ($sort == 'price-low-high') ? 'selected' : '' ?>>Giá Thấp - Cao</option>
+                                    <option value="price-high-low" <?= ($sort == 'price-high-low') ? 'selected' : '' ?>>Giá Cao - Thấp</option>
                                 </select>
                             </div>
                         </div>

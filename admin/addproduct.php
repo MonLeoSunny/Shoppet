@@ -35,7 +35,7 @@ if (isset($_COOKIE["user"])) {
       move_uploaded_file($tmp2, $dir . $anh2);
       move_uploaded_file($tmp3, $dir . $anh3);
 
-      selectAll("INSERT INTO sanpham (id_danhmuc,ten,nhasanxuat,id_nhacungcap,loaimoi,nguyenlieu,thuonghieu,baohanh,xuatxu,bonho,gia,anh1,anh2,anh3,chitiet,mota,luotxem,status) VALUES($id_danhmuc,'$ten','','$nhacungcap','$loaimoi','$nguyenlieu','$thuonghieu',$baohanh,$xuatxu,'$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,$status)");
+      selectAll("INSERT INTO sanpham (id_danhmuc,ten,id_nhacungcap,loaimoi,nguyenlieu,thuonghieu,baohanh,xuatxu,bonho,gia,anh1,anh2,anh3,chitiet,mota,luotxem,status) VALUES('$id_danhmuc','$ten','$nhacungcap','$loaimoi','$nguyenlieu','$thuonghieu','$baohanh','$xuatxu','$bonho',$gia,'$anh1','$anh2','$anh3','$chitiet','$mota',0,$status)");
       header('location:product.php');
     }
 ?>
