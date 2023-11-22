@@ -6,7 +6,7 @@ if (isset($_GET["id"])) {
     foreach (selectAll("SELECT * FROM sanpham WHERE id=$idSanpham") as $row) {
         $tensp = $row['ten'];
         $gia = $row['gia'];
-        $nhasanxuat = $row['nhasanxuat'];
+        // $nhasanxuat = $row['nhasanxuat'];
         $loaimoi = $row['loaimoi'];
         $nguyenlieu = $row['nguyenlieu'];
         $thuonghieu = $row['thuonghieu'];
@@ -236,14 +236,14 @@ if (isset($_GET["id"])) {
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td>
                                         <h5> Nhà sản xuất</h5>
                                     </td>
                                     <td>
                                         <h5><?= $nhasanxuat ?></h5>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>
                                         <h5>Thương hiệu</h5>
